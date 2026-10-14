@@ -55,7 +55,6 @@ export default function Hero() {
   }, []);
 
   return (
-    <main>
       <section className="hero" id="home" ref={heroRef} aria-label="ITZFIZZ introduction">
         <Image
           className="hero-image"
@@ -125,6 +124,5 @@ export default function Hero() {
 
         <span className="hero-bottom-line" aria-hidden="true" />
       </section>
-    </main>
   );
 }

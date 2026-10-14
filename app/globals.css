@@ -250,6 +250,281 @@ a {
   transform: translateX(-50%);
 }
 
+.journey {
+  isolation: isolate;
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  max-height: 1100px;
+  overflow: hidden;
+  background: #050b16;
+}
+
+.journey-image {
+  z-index: -3;
+  object-fit: cover;
+  object-position: center 56%;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.journey-shade {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(3 8 18 / 83%) 0%, rgb(3 8 18 / 46%) 35%, transparent 76%),
+    linear-gradient(0deg, rgb(3 8 18 / 76%) 0%, transparent 48%, rgb(3 8 18 / 38%) 100%);
+}
+
+.journey-wash {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.journey-wash--blue {
+  background: linear-gradient(115deg, rgb(19 54 93 / 45%), transparent 64%);
+}
+
+.journey-wash--red {
+  background: linear-gradient(90deg, transparent 26%, rgb(255 23 79 / 12%) 100%);
+}
+
+.journey-light-trail {
+  position: absolute;
+  z-index: -1;
+  top: 67%;
+  left: -8%;
+  width: 118%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgb(255 23 79 / 15%), #ff174f, rgb(255 23 79 / 20%), transparent);
+  box-shadow: 0 0 18px rgb(255 23 79 / 72%);
+  opacity: 0.65;
+  transform: rotate(-4deg);
+  transform-origin: center;
+}
+
+.journey-topline {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: flex;
+  width: min(100% - 9vw, 1440px);
+  height: 94px;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(245 247 251 / 76%);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.journey-topline p {
+  margin: 0;
+}
+
+.journey-topline p:first-child {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+}
+
+.journey-topline p:first-child span {
+  padding: 0 0.65rem;
+  color: var(--color-accent);
+}
+
+.journey-scroll-label::after {
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  margin: 0 0 0.2rem 0.65rem;
+  background: var(--color-accent);
+  content: "";
+}
+
+.journey-copy {
+  position: absolute;
+  inset: 0;
+  width: min(100% - 20vw, 1280px);
+  margin: 0 auto;
+}
+
+.journey-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  width: min(590px, 58vw);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.journey-panel:not(:first-child) {
+  visibility: hidden;
+}
+
+.journey-eyebrow {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  margin: 0 0 1.3rem;
+  color: #d2dbea;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.journey-eyebrow span {
+  color: var(--color-accent);
+  font-size: 0.75rem;
+}
+
+.journey-title {
+  margin: 0;
+  font-size: clamp(3.7rem, 7vw, 7.1rem);
+  font-weight: 650;
+  letter-spacing: 0.2em;
+  line-height: 0.98;
+}
+
+.journey-description {
+  max-width: 25rem;
+  margin: 1.6rem 0 0;
+  color: #d7e0ed;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+}
+
+.journey-end-link {
+  display: inline-flex;
+  width: fit-content;
+  gap: 0.8rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-accent);
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+.journey-end-link span {
+  color: var(--color-accent);
+}
+
+.journey-progress {
+  position: absolute;
+  top: 50%;
+  right: max(4.3vw, calc((100vw - 1480px) / 2));
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  transform: translateY(-50%);
+}
+
+.journey-progress-step {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  color: rgb(245 247 251 / 55%);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.64rem;
+  transition: color 180ms ease;
+}
+
+.journey-progress-step:hover,
+.journey-progress-step:focus-visible,
+.journey-progress-step.is-active {
+  color: #fff;
+}
+
+.journey-progress-step.is-active > span:first-child {
+  color: var(--color-accent);
+}
+
+.journey-progress-track {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  transition: width 240ms ease, background-color 240ms ease;
+}
+
+.journey-progress-step.is-active .journey-progress-track {
+  width: 34px;
+  background: var(--color-accent);
+}
+
+.journey-progress-note {
+  position: absolute;
+  right: max(4.3vw, calc((100vw - 1480px) / 2));
+  bottom: 6%;
+  margin: 0;
+  color: #fff;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+}
+
+.journey-progress-note span {
+  padding: 0 0.25rem;
+  color: var(--color-accent);
+}
+
+.site-footer {
+  display: flex;
+  min-height: 260px;
+  padding: 4rem max(10vw, calc((100vw - 1280px) / 2));
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  background:
+    radial-gradient(ellipse at 85% 0%, rgb(21 49 84 / 42%), transparent 48%),
+    #030812;
+}
+
+.footer-eyebrow {
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+}
+
+.site-footer h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  color: #d5deeb;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: #fff;
+}
+
+.footer-links span {
+  color: var(--color-accent);
+}
+
 @keyframes scroll-nudge {
   0%,
   100% {
@@ -343,6 +618,91 @@ a {
     gap: 1rem;
     font-size: 0.55rem;
   }
+
+  .journey {
+    min-height: 620px;
+  }
+
+  .journey-image {
+    object-position: 62% center;
+  }
+
+  .journey-shade {
+    background:
+      linear-gradient(90deg, rgb(3 8 18 / 82%) 0%, rgb(3 8 18 / 48%) 58%, transparent 100%),
+      linear-gradient(0deg, rgb(3 8 18 / 84%) 0%, transparent 54%, rgb(3 8 18 / 45%) 100%);
+  }
+
+  .journey-topline {
+    width: calc(100% - 2.5rem);
+    height: 78px;
+    font-size: 0.53rem;
+  }
+
+  .journey-topline p:first-child {
+    letter-spacing: 0.18em;
+  }
+
+  .journey-topline p:first-child span {
+    padding: 0 0.35rem;
+  }
+
+  .journey-scroll-label {
+    display: none;
+  }
+
+  .journey-copy {
+    width: calc(100% - 3rem);
+  }
+
+  .journey-panel {
+    width: calc(100% - 2.5rem);
+  }
+
+  .journey-title {
+    font-size: clamp(3.1rem, 11vw, 5rem);
+    letter-spacing: 0.16em;
+  }
+
+  .journey-description {
+    max-width: 19rem;
+    font-size: 0.76rem;
+  }
+
+  .journey-progress {
+    top: auto;
+    right: 1.5rem;
+    bottom: 7%;
+    flex-direction: row;
+    gap: 0.65rem;
+    transform: none;
+  }
+
+  .journey-progress-step {
+    gap: 0.4rem;
+    font-size: 0.56rem;
+  }
+
+  .journey-progress-track {
+    width: 10px;
+  }
+
+  .journey-progress-step.is-active .journey-progress-track {
+    width: 18px;
+  }
+
+  .journey-progress-note {
+    right: auto;
+    bottom: 7%;
+    left: 1.5rem;
+  }
+
+  .site-footer {
+    min-height: 240px;
+    padding: 3rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 420px) {
@@ -367,6 +727,23 @@ a {
   .hero-scroll-cue {
     left: 1rem;
   }
+
+  .journey-copy {
+    width: calc(100% - 2rem);
+  }
+
+  .journey-title {
+    font-size: 2.75rem;
+    letter-spacing: 0.14em;
+  }
+
+  .journey-progress {
+    right: 1rem;
+  }
+
+  .journey-progress-note {
+    left: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -377,5 +754,34 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .journey {
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+  }
+
+  .journey-copy {
+    position: relative;
+    display: grid;
+    gap: 2rem;
+    padding: 35svh 0 4rem;
+  }
+
+  .journey-panel,
+  .journey-panel:not(:first-child) {
+    position: relative;
+    inset: auto;
+    display: flex;
+    width: 100%;
+    min-height: 260px;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .journey-progress {
+    display: none;
   }
 }
